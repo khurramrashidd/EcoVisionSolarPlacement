@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Solar Subsidy Info 🇮🇳</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='govt_subsidy.css') }}">
+</head>
+<body>
+  <header class="subsidy-header">
+    <h1>🌞 Indian Solar Subsidy Information</h1>
+  </header>
+
+  <main class="subsidy-content">
+    <section>
+      <h2>Central Government Initiatives</h2>
+      <ul class="subsidy-list">
+        <li>
+          <strong>MNRE Rooftop Solar Scheme:</strong>  
+          Up to 40% subsidy for residential rooftop solar (up to 3 kW)  
+          <a href="https://solarrooftop.gov.in/" target="_blank">Official Link</a>
+        </li>
+        <li>
+          <strong>KUSUM Scheme:</strong>  
+          Subsidy for solar pumps and small grid-connected solar plants for farmers  
+          <a href="https://mnre.gov.in/" target="_blank">Official Link</a>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>State/UT Government Subsidy Details</h2>
+      <label for="stateSelect">Select State/UT:</label>
+      <select id="stateSelect">
+        <option value="">-- Select State/UT --</option>
+        <option value="Andhra Pradesh">Andhra Pradesh</option>
+        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+        <option value="Assam">Assam</option>
+        <option value="Bihar">Bihar</option>
+        <option value="Chhattisgarh">Chhattisgarh</option>
+        <option value="Goa">Goa</option>
+        <option value="Gujarat">Gujarat</option>
+        <option value="Haryana">Haryana</option>
+        <option value="Himachal Pradesh">Himachal Pradesh</option>
+        <option value="Jharkhand">Jharkhand</option>
+        <option value="Karnataka">Karnataka</option>
+        <option value="Kerala">Kerala</option>
+        <option value="Madhya Pradesh">Madhya Pradesh</option>
+        <option value="Maharashtra">Maharashtra</option>
+        <option value="Manipur">Manipur</option>
+        <option value="Meghalaya">Meghalaya</option>
+        <option value="Mizoram">Mizoram</option>
+        <option value="Nagaland">Nagaland</option>
+        <option value="Odisha">Odisha</option>
+        <option value="Punjab">Punjab</option>
+        <option value="Rajasthan">Rajasthan</option>
+        <option value="Sikkim">Sikkim</option>
+        <option value="Tamil Nadu">Tamil Nadu</option>
+        <option value="Telangana">Telangana</option>
+        <option value="Tripura">Tripura</option>
+        <option value="Uttar Pradesh">Uttar Pradesh</option>
+        <option value="Uttarakhand">Uttarakhand</option>
+        <option value="West Bengal">West Bengal</option>
+        <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+        <option value="Chandigarh">Chandigarh</option>
+        <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+        <option value="Delhi">Delhi</option>
+        <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+        <option value="Ladakh">Ladakh</option>
+        <option value="Lakshadweep">Lakshadweep</option>
+        <option value="Puducherry">Puducherry</option>
+      </select>
+
+      <div id="stateInfo" class="state-info"></div>
+    </section>
+  </main>
+
+  <script>
+      const stateData = {
+    "Andhra Pradesh": {
+      text: "Subsidy details available under AP Solar Policy.",
+      link: "https://www.nedcap.ap.gov.in/"
+    },
+    "Arunachal Pradesh": {
+      text: "State offers support for rooftop solar under central schemes.",
+      link: "https://itanagar.nic.in/"
+    },
+    "Assam": {
+      text: "Solar rooftop subsidy aligned with MNRE central schemes.",
+      link: "https://www.aeda.assam.gov.in/"
+    },
+    "Bihar": {
+      text: "30% subsidy on rooftop solar for residential users.",
+      link: "https://breda.co.in/"
+    },
+    "Chhattisgarh": {
+      text: "State provides subsidy in coordination with MNRE.",
+      link: "https://cspdcl.co.in/"
+    },
+    "Goa": {
+      text: "Subsidy provided as per MNRE guidelines.",
+      link: "https://goasolar.in/"
+    },
+    "Gujarat": {
+      text: "40% subsidy up to 3kW, 20% up to 10kW under Surya Gujarat.",
+      link: "https://www.suryagujarat.guvnl.in/"
+    },
+    "Haryana": {
+      text: "30-40% subsidy on rooftop solar up to 10kW.",
+      link: "https://hareda.gov.in/"
+    },
+    "Himachal Pradesh": {
+      text: "State subsidy available for residential solar rooftops.",
+      link: "https://himurja.hp.gov.in/"
+    },
+    "Jharkhand": {
+      text: "State supports rooftop solar with MNRE subsidy.",
+      link: "https://jreda.com/"
+    },
+    "Karnataka": {
+      text: "30-40% subsidy for rooftop solar installations.",
+      link: "https://bescom.karnataka.gov.in/"
+    },
+    "Kerala": {
+      text: "30-40% subsidy for rooftop solar systems.",
+      link: "https://www.kseb.in/"
+    },
+    "Madhya Pradesh": {
+      text: "Up to 30% subsidy for residential rooftop.",
+      link: "https://www.mprenewable.nic.in/"
+    },
+    "Maharashtra": {
+      text: "30% subsidy for rooftop solar (residential), extra 10% for rural areas.",
+      link: "https://www.mahaurja.com/"
+    },
+    "Manipur": {
+      text: "State subsidy available as per MNRE guidelines.",
+      link: "https://manipur.gov.in/"
+    },
+    "Meghalaya": {
+      text: "MNRE-linked subsidy available for solar rooftops.",
+      link: "http://msl.megurban.gov.in/"
+    },
+    "Mizoram": {
+      text: "State implements central subsidy schemes.",
+      link: "https://power.mizoram.gov.in/"
+    },
+    "Nagaland": {
+      text: "Solar rooftop supported via MNRE schemes.",
+      link: "https://power.nagaland.gov.in/"
+    },
+    "Odisha": {
+      text: "State offers subsidy under central solar policies.",
+      link: "http://www.orierc.org/"
+    },
+    "Punjab": {
+      text: "Up to 40% subsidy for domestic rooftop solar.",
+      link: "https://peda.gov.in/"
+    },
+    "Rajasthan": {
+      text: "30% subsidy for residential rooftop, additional KUSUM benefits.",
+      link: "https://energy.rajasthan.gov.in/"
+    },
+    "Sikkim": {
+      text: "Solar subsidy implemented as per MNRE guidelines.",
+      link: "https://power.sikkim.gov.in/"
+    },
+    "Tamil Nadu": {
+      text: "Up to 30% subsidy for residential rooftop systems.",
+      link: "https://www.teda.in/"
+    },
+    "Telangana": {
+      text: "State implements MNRE rooftop subsidy schemes.",
+      link: "https://tsredco.telangana.gov.in/"
+    },
+    "Tripura": {
+      text: "30% rooftop solar subsidy available.",
+      link: "https://treda.tripura.gov.in/"
+    },
+    "Uttar Pradesh": {
+      text: "30% subsidy under state solar policy.",
+      link: "https://www.upneda.org.in/"
+    },
+    "Uttarakhand": {
+      text: "State provides rooftop subsidy aligned with MNRE.",
+      link: "https://ureda.uk.gov.in/"
+    },
+    "West Bengal": {
+      text: "20-30% subsidy on rooftop solar installations.",
+      link: "https://wberc.gov.in/"
+    },
+    "Andaman and Nicobar Islands": {
+      text: "Solar rooftop supported via central schemes.",
+      link: "https://www.andaman.gov.in/"
+    },
+    "Chandigarh": {
+      text: "Mandatory rooftop solar with subsidy for new buildings.",
+      link: "https://www.chandigarh.gov.in/"
+    },
+    "Dadra and Nagar Haveli and Daman and Diu": {
+      text: "Rooftop solar promoted via MNRE schemes.",
+      link: "https://dnrd.gov.in/"
+    },
+    "Delhi": {
+      text: "30% subsidy for residential/group housing.",
+      link: "https://delhisolarpolicy.com/"
+    },
+    "Jammu and Kashmir": {
+      text: "MNRE-linked rooftop solar subsidies available.",
+      link: "https://www.jakeda.jk.gov.in/"
+    },
+    "Ladakh": {
+      text: "Special solar subsidy schemes due to terrain conditions.",
+      link: "https://ladakh.nic.in/"
+    },
+    "Lakshadweep": {
+      text: "Rooftop solar supported under MNRE schemes.",
+      link: "https://lakshadweep.gov.in/"
+    },
+    "Puducherry": {
+      text: "State subsidy for rooftop solar via MNRE.",
+      link: "https://electricity.py.gov.in/"
+    }
+  };
+
+
+    document.getElementById("stateSelect").addEventListener("change", function() {
+      const state = this.value;
+      const infoDiv = document.getElementById("stateInfo");
+      if (state && stateData[state]) {
+        infoDiv.innerHTML = `
+          <p>${stateData[state].text}</p>
+          <a href="${stateData[state].link}" target="_blank">Visit Official Site</a>
+        `;
+      } else if (state) {
+        infoDiv.innerHTML = `<p>No specific subsidy info available. Please check <a href="https://mnre.gov.in/" target="_blank">MNRE site</a>.</p>`;
+      } else {
+        infoDiv.innerHTML = "";
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EcoVision Solar Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="main-header">
+    <h1>🌞 EcoVision Solar Placement App</h1>
+  </header>
+
+  <div class="container">
+    <aside class="sidebar">
+      <nav>
+        <ul>
+          <li><a href="#" id="uploadNav">📤 Upload Image</a></li>
+          <li><a href="#" id="cameraNav">📸 Camera Capture</a></li>
+          <li><a href="/govt_subsidy">⚡ Govt Subsidy</a></li>
+          <li><a href="#" id="futureNav">🚀 Future Features</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <!-- Upload Image -->
+      <div class="card" id="uploadCard">
+        <h2>Upload Rooftop Image</h2>
+        <form id="uploadForm" enctype="multipart/form-data">
+          <input type="file" name="image" accept="image/*" required />
+          <button type="submit" id="uploadAnalyzeBtn">Analyze Uploaded Image</button>
+        </form>
+      </div>
+
+      <!-- Camera Capture -->
+      <div class="card" id="cameraCard">
+        <h2>Capture Using Camera</h2>
+        <button id="openCamera">Open Camera</button>
+        <div id="cameraRow" class="camera-row" style="display:none;">
+          <div class="camera-col">
+            <video id="video" autoplay playsinline></video>
+            <button id="snap">Capture Photo</button>
+          </div>
+          <div class="camera-col">
+            <canvas id="canvas" style="display:none;"></canvas>
+            <form id="cameraForm" enctype="multipart/form-data" style="margin-top:10px;">
+              <input type="hidden" name="camera_image" id="camera_image_input" />
+              <button type="submit" id="cameraAnalyzeBtn">Analyze Captured Image</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Analysis Result -->
+      <div id="resultCard" class="card result" style="display: none;">
+        <h2>Analysis Result</h2>
+        <div class="result-content">
+          <img id="resultImage" src="" alt="Analyzed Image" class="result-img" />
+          <div class="result-text">
+            <p>✅ <strong>Free Area:</strong> <span id="freeArea"></span>%</p>
+            <p>✅ <strong>Tilt:</strong> <span id="tilt"></span>°</p>
+            <p>✅ <strong>Orientation:</strong> <span id="orientationDir"></span> (<span id="orientationDeg"></span>°)</p>
+            <p id="resultMessage"></p>
+            <button id="aiRecommenderBtn">Get AI Recommendations 🤖</button>
+            <button id="downloadReportBtn" style="display:none;">Download Report 📄</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Output -->
+      <div id="aiCard" class="card ai-card" style="display: none;">
+        <h2>AI Solar Suggestions 🤖</h2>
+        <div id="aiOutput" class="ai-output"></div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Loading overlay -->
+  <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+    <div class="spinner"></div>
+    <p>Processing... Please wait ⏳</p>
+  </div>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

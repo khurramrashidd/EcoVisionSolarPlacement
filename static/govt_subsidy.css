@@ -1,0 +1,65 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f4f6f8;
+  margin: 0;
+  padding: 0;
+}
+
+.subsidy-header {
+  background: #2980b9;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.subsidy-content {
+  max-width: 900px;
+  margin: 20px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.subsidy-list {
+  list-style: none;
+  padding: 0;
+}
+
+.subsidy-list li {
+  background: #ecf0f1;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-left: 4px solid #2980b9;
+  border-radius: 4px;
+}
+
+label {
+  font-weight: bold;
+}
+
+#stateSelect {
+  padding: 8px;
+  margin: 10px 0;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.state-info {
+  background: #ecf0f1;
+  padding: 12px;
+  border-radius: 4px;
+  border-left: 4px solid #27ae60;
+  margin-top: 10px;
+}
+
+.state-info a {
+  display: inline-block;
+  margin-top: 5px;
+  color: #2980b9;
+  text-decoration: none;
+}
+
+.state-info a:hover {
+  text-decoration: underline;
+}
