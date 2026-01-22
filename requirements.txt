@@ -2,4 +2,9 @@ flask
 ultralytics
 opencv-python
 reportlab
+pysolar
+pytz
+numpy
+google-generativeai
+Pillow
 gunicorn
